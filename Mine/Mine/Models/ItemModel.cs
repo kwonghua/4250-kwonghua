@@ -14,6 +14,6 @@ namespace Mine.Models
         // the description of the item
         public string Description { get; set; }
         // the value of the item +9 damage
-        public int value { get; set; } = 0;
+        public int Value { get; set; } = 0;
     }
 }
