@@ -36,10 +36,27 @@ namespace Mine.Services
                 initialized = true;
             }
         }
-
-        Task<bool> IDataStore<ItemModel>.CreateAsync(ItemModel item)
+        /// <summary>
+        /// InsertAsync will write to the table, it returns the ID of what was written, 
+        /// for our usage item already holds the ID, so as long as it is not 0, it worked
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        public async Task<bool> CreateAsync(ItemModel item)
         {
-            throw new NotImplementedException();
+            if (item == null)
+            {
+                return false;
+            }
+
+            var result = await Database.InsertAsync(item);
+
+            if (result == 0)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         Task<bool> IDataStore<ItemModel>.UpdateAsync(ItemModel item)
