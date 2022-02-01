@@ -36,6 +36,7 @@ namespace Mine.Services
                 initialized = true;
             }
         }
+
         /// <summary>
         /// InsertAsync will write to the table, it returns the ID of what was written, 
         /// for our usage item already holds the ID, so as long as it is not 0, it worked
@@ -58,6 +59,7 @@ namespace Mine.Services
 
             return true;
         }
+
         /// <summary>
         /// updates item in database, true if success
         /// </summary>
@@ -78,10 +80,28 @@ namespace Mine.Services
             return true;
         }
 
-        Task<bool> IDataStore<ItemModel>.DeleteAsync(string id)
+        /// <summary>
+        /// Used to delete item from database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<bool> DeleteAsync(string id)
         {
-            throw new NotImplementedException();
+            var data = await ReadAsync(id);
+            if(data == null)
+            {
+                return false;
+            }
+
+            var result = await Database.DeleteAsync(data);
+            if(result == 0)
+            {
+                return false;
+            }
+
+            return true;
         }
+
         /// <summary>
         /// ReadAsync will take an ID and return the ItemModel
         /// </summary>
