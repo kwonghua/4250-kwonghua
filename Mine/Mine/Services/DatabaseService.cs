@@ -68,7 +68,11 @@ namespace Mine.Services
         {
             throw new NotImplementedException();
         }
-
+        /// <summary>
+        /// ReadAsync will take an ID and return the ItemModel
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Task<ItemModel> ReadAsync(string id)
         {
             if(id == null)
