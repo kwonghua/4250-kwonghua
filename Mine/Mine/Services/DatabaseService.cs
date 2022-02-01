@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using SQLite;
 
 using Mine.Models;
+using System.Collections.Generic;
 
 namespace Mine.Services
 {
-    public class DatabaseService
+    public class DatabaseService : IDataStore<ItemModel>
     {
         static readonly Lazy<SQLiteAsyncConnection> lazyInitializer = new Lazy<SQLiteAsyncConnection>(() =>
         {
@@ -34,6 +35,31 @@ namespace Mine.Services
 
                 initialized = true;
             }
+        }
+
+        Task<bool> IDataStore<ItemModel>.CreateAsync(ItemModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> IDataStore<ItemModel>.UpdateAsync(ItemModel item)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> IDataStore<ItemModel>.DeleteAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<ItemModel> IDataStore<ItemModel>.ReadAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<IEnumerable<ItemModel>> IDataStore<ItemModel>.IndexAsync(bool forceRefresh)
+        {
+            throw new NotImplementedException();
         }
     }
 }
