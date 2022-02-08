@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Mine.Models;
 using NUnit.Framework;
 namespace UnitTests.Models
 {
@@ -14,10 +15,10 @@ namespace UnitTests.Models
             // Arrange
 
             //Act
-
+            var result = new ItemModel();
             //Assert
 
-            Assert.Pass();
+            Assert.IsNotNull(result);
         }
     }
 }
